@@ -75,7 +75,7 @@ export default function InsightsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="overflow-hidden hover:shadow-xl transition-all">
+                  <Card className="overflow-hidden hover:shadow-xl transition-all pt-0">
                     <img
                       src={insight.image}
                       alt={insight.title}

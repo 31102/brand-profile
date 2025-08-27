@@ -157,12 +157,12 @@ export function InsightsSection() {
               viewport={{ once: false }}
               transition={{ delay: index * 0.1 }}
             >
-              <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+              <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group pt-0">
                 <div className="relative overflow-hidden">
                   <img
                     src={insight.image || "/placeholder.svg"}
                     alt={insight.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300 rounded-xl"
                   />
                   <div
                     className={`absolute top-4 ${isRTL ? "right-4" : "left-4"}`}
