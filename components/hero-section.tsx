@@ -166,12 +166,12 @@ export function HeroSection() {
           >
             <div className="relative">
               <img
-                src="/Major General Hamed Mohammed.jpeg"
+                src="/Major General Hamed Mohammed.png"
                 alt="Hamed Al Ayafei Portrait"
                 className="w-full h-[500px] max-w-md mx-auto rounded-lg shadow-2xl object-cover object-top"
               />
               <div
-                className={`absolute bottom-5 right-5 md:right-0 md:-bottom-6 bg-secondary text-secondary-foreground p-4 rounded-lg shadow-lg ${
+                className={`absolute bottom-5 md:-bottom-6 bg-secondary text-secondary-foreground p-4 rounded-lg shadow-lg ${
                   language === "ar" ? "-left-6" : "-right-6"
                 }`}
               >

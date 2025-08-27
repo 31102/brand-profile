@@ -145,7 +145,7 @@ export function AboutSection() {
             className="relative"
           >
             <img
-              src="/qatar-military-officer-transitioning-to-business-l.png"
+              src="/main.png"
               alt="General Hamed in Business Setting"
               className="w-full rounded-lg shadow-lg"
             />

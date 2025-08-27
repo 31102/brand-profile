@@ -4,12 +4,20 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { GraduationCap, Calendar, Palette, ExternalLink, Trophy, HeartHandshake, Briefcase } from "lucide-react";
+import {
+  GraduationCap,
+  Calendar,
+  Palette,
+  ExternalLink,
+  Trophy,
+  HeartHandshake,
+  Briefcase,
+} from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 
 const partnerships = [
   {
-    icon: GraduationCap,
+    icon: "/idai.png",
     name: {
       en: "IAID Academy",
       ar: "أكاديمية IAID",
@@ -31,9 +39,10 @@ const partnerships = [
       ar: ["التعليم الفني", "تنمية الشباب", "التبادل الثقافي"],
     },
     image: "/modern-performing-arts-academy-with-students-in-qa.png",
+    link: "https://www.iaidonline.org/",
   },
   {
-    icon: Calendar,
+    icon: "/event.jpg",
     name: {
       en: "Impact Events",
       ar: "فعاليات التأثير",
@@ -55,9 +64,10 @@ const partnerships = [
       ar: ["إدارة الفعاليات", "الفعاليات الرياضية", "المؤتمرات الثقافية"],
     },
     image: "/large-scale-qatar-cultural-event-with-traditional-.png",
+    link: "https://www.impacteventsqatar.com/",
   },
   {
-    icon: Palette,
+    icon: "/planet.jpg",
     name: {
       en: "Planet Scribbles Qatar",
       ar: "بلانت سكريبلز قطر",
@@ -79,6 +89,7 @@ const partnerships = [
       ar: ["الطفولة المبكرة", "التعلم الفني", "المشاركة المجتمعية"],
     },
     image: "/children-engaged-in-creative-arts-learning-activit.png",
+    link: "https://planetscribbles.qa/",
   },
 ];
 
@@ -243,8 +254,12 @@ export function PortfolioSection() {
                     }`}
                   >
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                        <partnership.icon className="w-6 h-6 text-primary" />
+                      <div className="md:w-20 md:h-20 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                        <img
+                          src={partnership.icon}
+                          alt={partnership.name[language]}
+                          className="w-full h-full object-contain rounded-full"
+                        />
                       </div>
                       <div>
                         <h3 className="text-xl font-bold text-primary font-work-sans">
@@ -272,12 +287,22 @@ export function PortfolioSection() {
                         </Badge>
                       ))}
                     </div>
-                    {/* <Button variant="outline" className="w-fit bg-transparent">
-                      {content[language].learnMore}
-                      <ExternalLink
-                        className={`${isRTL ? "mr-2" : "ml-2"} w-4 h-4`}
-                      />
-                    </Button> */}
+                    <Button
+                      variant="outline"
+                      className="w-fit bg-transparent"
+                      asChild
+                    >
+                      <a
+                        href={partnership.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {content[language].learnMore}
+                        <ExternalLink
+                          className={`${isRTL ? "mr-2" : "ml-2"} w-4 h-4`}
+                        />
+                      </a>
+                    </Button>
                   </div>
                 </div>
               </Card>
@@ -302,40 +327,47 @@ export function PortfolioSection() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-  {offerings.map((offering, index) => (
-    <motion.div
-      key={offering.title.en}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false }}
-      transition={{ delay: index * 0.1 }}
-    >
-      <Card className="h-full hover:shadow-lg transition-shadow duration-300 pt-0">
-        <img src={offering.image} alt={offering.title[language]} className="w-full h-70 object-cover rounded-md" />
-        <CardHeader className="flex items-center gap-4">
-          <div className="size-10 flex items-center justify-center bg-primary/10 rounded-xl">
-            {offering.icon}
-          </div>
-          <CardTitle className="text-primary font-work-sans">
-            {offering.title[language]}
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ul className="space-y-3">
-            {offering.items[language].map((item, itemIndex) => (
-              <li key={itemIndex} className="flex items-start gap-3 ml-3">
-                <div className="w-2 h-2 bg-secondary rounded-full mt-2 flex-shrink-0" />
-                <span className="text-muted-foreground font-open-sans">
-                  {item}
-                </span>
-              </li>
+            {offerings.map((offering, index) => (
+              <motion.div
+                key={offering.title.en}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="h-full hover:shadow-lg transition-shadow duration-300 pt-0">
+                  <img
+                    src={offering.image}
+                    alt={offering.title[language]}
+                    className="w-full h-70 object-cover rounded-md"
+                  />
+                  <CardHeader className="flex items-center gap-4">
+                    <div className="size-10 flex items-center justify-center bg-primary/10 rounded-xl">
+                      {offering.icon}
+                    </div>
+                    <CardTitle className="text-primary font-work-sans">
+                      {offering.title[language]}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-3">
+                      {offering.items[language].map((item, itemIndex) => (
+                        <li
+                          key={itemIndex}
+                          className="flex items-start gap-3 ml-3"
+                        >
+                          <div className="w-2 h-2 bg-secondary rounded-full mt-2 flex-shrink-0" />
+                          <span className="text-muted-foreground font-open-sans">
+                            {item}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
-          </ul>
-        </CardContent>
-      </Card>
-    </motion.div>
-  ))}
-</div>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -1,33 +1,78 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { useLanguage } from "@/contexts/language-context"
-import { Users, Building2, Award, Calendar, TrendingUp, Globe } from "lucide-react"
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useMotionValue, animate, useInView } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/contexts/language-context";
+import { Users, Building2, Award, Calendar, TrendingUp, Globe } from "lucide-react";
 
-const statistics = {
+type Stat = {
+  icon: any;
+  value: number;
+  suffix?: string;
+  prefix?: string;
+  label: string;
+  description: string;
+};
+
+const statistics: { en: Stat[]; ar: Stat[] } = {
   en: [
-    { icon: Calendar, value: "30+", label: "Years of Leadership", description: "Military & Business Experience" },
-    { icon: Building2, value: "50+", label: "Strategic Partnerships", description: "Across Multiple Industries" },
-    { icon: Users, value: "1000+", label: "Lives Impacted", description: "Through CSR Initiatives" },
-    { icon: Award, value: "15+", label: "Awards & Recognition", description: "National & International" },
-    { icon: TrendingUp, value: "QAR 500M+", label: "Investment Facilitated", description: "For Qatar's Economy" },
-    { icon: Globe, value: "25+", label: "Countries Engaged", description: "International Collaborations" },
+    { icon: Calendar, value: 30, suffix: "+", label: "Years of Leadership", description: "Military & Business Experience" },
+    { icon: Building2, value: 50, suffix: "+", label: "Strategic Partnerships", description: "Across Multiple Industries" },
+    { icon: Users, value: 1000, suffix: "+", label: "Lives Impacted", description: "Through CSR Initiatives" },
+    { icon: Award, value: 15, suffix: "+", label: "Awards & Recognition", description: "National & International" },
+    { icon: TrendingUp, value: 500, prefix: "QAR ", suffix: "M+", label: "Investment Facilitated", description: "For Qatar's Economy" },
+    { icon: Globe, value: 25, suffix: "+", label: "Countries Engaged", description: "International Collaborations" },
   ],
   ar: [
-    { icon: Calendar, value: "+30", label: "سنة من القيادة", description: "خبرة عسكرية وتجارية" },
-    { icon: Building2, value: "+50", label: "شراكة استراتيجية", description: "عبر صناعات متعددة" },
-    { icon: Users, value: "+1000", label: "حياة تأثرت", description: "من خلال مبادرات المسؤولية الاجتماعية" },
-    { icon: Award, value: "+15", label: "جائزة وتقدير", description: "وطنية ودولية" },
-    { icon: TrendingUp, value: "+500 مليون ريال", label: "استثمار تم تسهيله", description: "لاقتصاد قطر" },
-    { icon: Globe, value: "+25", label: "دولة متفاعلة", description: "تعاونات دولية" },
+    { icon: Calendar, value: 30, suffix: "+", label: "سنة من القيادة", description: "خبرة عسكرية وتجارية" },
+    { icon: Building2, value: 50, suffix: "+", label: "شراكة استراتيجية", description: "عبر صناعات متعددة" },
+    { icon: Users, value: 1000, suffix: "+", label: "حياة تأثرت", description: "من خلال مبادرات المسؤولية الاجتماعية" },
+    { icon: Award, value: 15, suffix: "+", label: "جائزة وتقدير", description: "وطنية ودولية" },
+    { icon: TrendingUp, value: 500, prefix: "ر.ق ", suffix: " مليون", label: "استثمار تم تسهيله", description: "لاقتصاد قطر" },
+    { icon: Globe, value: 25, suffix: "+", label: "دولة متفاعلة", description: "تعاونات دولية" },
   ],
+};
+
+// CountUp component — animates only when its element comes into view
+function CountUp({ target, duration = 1.8, once = true }: { target: number; duration?: number; once?: boolean }) {
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const inView = useInView(ref, { once });
+  const motionVal = useMotionValue(0);
+  const [display, setDisplay] = useState<number>(0);
+
+  // update local state when motion value changes
+  useEffect(() => {
+    const unsubscribe = motionVal.on("change", (v) => {
+      setDisplay(Math.floor(v));
+    });
+    return () => unsubscribe();
+  }, [motionVal]);
+
+  // start / reset animation based on visibility
+  useEffect(() => {
+    let controls: { stop: () => void } | null = null;
+    if (inView) {
+      controls = animate(motionVal, target, { duration, ease: "easeOut" });
+    } else if (!once) {
+      // if we want to re-trigger on every view, reset when out of view
+      motionVal.set(0);
+      setDisplay(0);
+    }
+    return () => controls?.stop();
+  }, [inView, target, duration, once, motionVal]);
+
+  return (
+    <span ref={ref} aria-live="polite">
+      {display.toLocaleString()}
+    </span>
+  );
 }
 
 export function StatisticsInfographic() {
-  const { language, isRTL } = useLanguage()
-  const stats = statistics[language]
+  const { language, isRTL } = useLanguage();
+  const stats = statistics[language];
 
   return (
     <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary/5">
@@ -35,7 +80,7 @@ export function StatisticsInfographic() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           className={`text-center mb-12 ${isRTL ? "rtl" : "ltr"}`}
         >
           <Badge variant="outline" className="mb-4">
@@ -46,30 +91,33 @@ export function StatisticsInfographic() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 50, scale: 0.8 }}
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: false }}
-              transition={{ delay: index * 0.1, type: "spring", stiffness: 100 }}
+              transition={{ delay: index * 0.07, type: "spring", stiffness: 100 }}
             >
               <Card className="text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group">
                 <CardContent className="p-6 space-y-4">
                   <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
                     <stat.icon className="w-8 h-8 text-white" />
                   </div>
+
                   <div className="space-y-2">
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: false }}
-                      transition={{ delay: index * 0.1 + 0.3, type: "spring", stiffness: 200 }}
-                      className="text-3xl font-bold text-primary font-work-sans"
-                    >
-                      {stat.value}
-                    </motion.div>
+                    <div className="text-3xl font-bold text-primary font-work-sans flex items-baseline justify-center gap-2">
+                      {/* prefix (like currency) if any */}
+                      {stat.prefix && <span className="text-base font-medium">{stat.prefix}</span>}
+
+                      {/* CountUp — will animate when visible */}
+                      <CountUp target={stat.value} duration={1.8} once={true} />
+
+                      {/* suffix (like +, M+, text) */}
+                      {stat.suffix && <span className="font-medium">{stat.suffix}</span>}
+                    </div>
+
                     <h3 className="font-semibold text-sm text-foreground font-work-sans">{stat.label}</h3>
                     <p className="text-xs text-muted-foreground font-open-sans">{stat.description}</p>
                   </div>
@@ -80,5 +128,5 @@ export function StatisticsInfographic() {
         </div>
       </div>
     </section>
-  )
+  );
 }

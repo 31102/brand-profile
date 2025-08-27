@@ -14,7 +14,7 @@ import {
   Mic,
 } from "lucide-react";
 
-const insightsData = {
+export const insightsData = {
   en: {
     title: "Insights & Perspectives",
     subtitle:
@@ -146,30 +146,10 @@ export function InsightsSection() {
           </p>
         </motion.div>
 
-        {/* Category Filter */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          className={`flex flex-wrap justify-center gap-2 mb-12 ${
-            isRTL ? "rtl" : "ltr"
-          }`}
-        >
-          {content.categories.map((category, index) => (
-            <Button
-              key={category}
-              variant={index === 0 ? "default" : "outline"}
-              size="sm"
-              className="text-sm"
-            >
-              {category}
-            </Button>
-          ))}
-        </motion.div>
 
         {/* Insights Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {content.insights.map((insight, index) => (
+          {content.insights.slice(0, 3).map((insight, index) => (
             <motion.div
               key={insight.title}
               initial={{ opacity: 0, y: 50 }}
@@ -277,11 +257,8 @@ export function InsightsSection() {
           viewport={{ once: false }}
           className="text-center"
         >
-          <Button size="lg" className="bg-primary hover:bg-primary/90">
-            {content.viewAll}
-            <ArrowRight
-              className={`ml-2 w-5 h-5 ${isRTL ? "rotate-180 mr-2 ml-0" : ""}`}
-            />
+          <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
+            <a href="/insight">{content.viewAll}</a>
           </Button>
         </motion.div>
       </div>
