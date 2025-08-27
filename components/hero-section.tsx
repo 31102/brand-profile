@@ -13,7 +13,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-30 md:pt-0"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-30 lg:pt-0"
     >
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
@@ -171,7 +171,7 @@ export function HeroSection() {
                 className="w-full h-[500px] max-w-md mx-auto rounded-lg shadow-2xl object-cover object-top"
               />
               <div
-                className={`absolute -bottom-6 bg-secondary text-secondary-foreground p-4 rounded-lg shadow-lg ${
+                className={`absolute bottom-5 right-5 md:right-0 md:-bottom-6 bg-secondary text-secondary-foreground p-4 rounded-lg shadow-lg ${
                   language === "ar" ? "-left-6" : "-right-6"
                 }`}
               >

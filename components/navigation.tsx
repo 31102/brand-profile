@@ -80,7 +80,7 @@ export function Navigation() {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8">
             {navItems.map((item, index) => (
               <motion.a
                 key={item.name}
@@ -92,7 +92,7 @@ export function Navigation() {
                   language === "ar" ? "font-arabic" : ""
                 } ${
                   activeSection === item.href
-                    ? "text-primary underline"
+                    ? "text-secondary underline"
                     : scrolled
                     ? "text-primary"
                     : "text-white hover:text-purple-50"
@@ -125,12 +125,13 @@ export function Navigation() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-2">
-            <LanguageSwitcher />
+          <div className="lg:hidden flex items-center space-x-2">
+            <LanguageSwitcher scrolled={scrolled} />
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setIsOpen(!isOpen)}
+              className={scrolled ? "text-primary" : "text-white"}
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </Button>
@@ -145,7 +146,7 @@ export function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/95 backdrop-blur-md border-t"
+            className="lg:hidden bg-background/95 backdrop-blur-md border-t"
           >
             <div className="px-4 py-4 space-y-4">
               {navItems.map((item, index) => (
@@ -162,7 +163,10 @@ export function Navigation() {
                   } ${
                     activeSection === item.href ? "text-primary underline" : "text-foreground hover:text-primary"
                   }`}
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false);
+                    router.push(item.href);
+                  }}
                 >
                   {item.name}
                 </motion.a>
