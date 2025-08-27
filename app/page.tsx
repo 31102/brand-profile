@@ -17,7 +17,7 @@ import { NewsletterSignup } from "@/components/newsletter-signup"
 export default function HomePage() {
   return (
     <LanguageProvider>
-      <main className="min-h-screen">
+      <main className="min-h-screen overflow-hidden">
         <Navigation />
         <HeroSection />
         <AboutSection />
@@ -29,7 +29,6 @@ export default function HomePage() {
         <ContactSection />
         <NewsletterSignup />
         <Footer />
-        <WhatsAppWidget />
       </main>
     </LanguageProvider>
   )

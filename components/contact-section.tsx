@@ -26,7 +26,7 @@ const contactData = {
         icon: MapPin,
         title: "Location",
         details: "Doha, Qatar",
-        description: "Building No. 4, Al Jazira Commercial Complex, Logistics Park A, Street 52, Birkat Al Awamer",
+        description: "D Ring Road, Zone 44, Street 250, Building No. 219, Gate No. 1, 2nd Floor, Office No. 15",
       },
       {
         icon: Phone,
@@ -73,7 +73,7 @@ const contactData = {
         icon: MapPin,
         title: "الموقع",
         details: "الدوحة، قطر",
-        description: "المبنى رقم 4، مجمع الجزيرة التجاري، حديقة اللوجستيات أ، شارع 52، بركة العوامر",
+        description: "الطريق الدائري D، المنطقة 44، شارع 250، المبنى رقم 219، البوابة رقم 1، الطابق الثاني، المكتب رقم 15",
       },
       {
         icon: Phone,
@@ -118,12 +118,12 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="py-20 bg-muted/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-2 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
-          className={`text-center mb-16 ${isRTL ? "rtl" : "ltr"}`}
+          className={`text-center mb-16`}
         >
           <Badge variant="outline" className="mb-4">
             {content.badge}
@@ -132,7 +132,7 @@ export function ContactSection() {
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto font-open-sans">{content.subtitle}</p>
         </motion.div>
 
-        <div className={`grid lg:grid-cols-2 gap-12 ${isRTL ? "rtl" : "ltr"}`}>
+        <div className={`grid lg:grid-cols-2 gap-12`}>
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: isRTL ? 50 : -50 }}
@@ -156,11 +156,11 @@ export function ContactSection() {
                 >
                   <Card className="hover:shadow-lg transition-shadow duration-300">
                     <CardContent className="p-6">
-                      <div className={`flex items-start gap-4 ${isRTL ? "flex-row-reverse" : ""}`}>
+                      <div className={`flex items-start gap-4`}>
                         <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                           <info.icon className="w-6 h-6 text-primary" />
                         </div>
-                        <div className={`space-y-1 ${isRTL ? "text-right" : "text-left"}`}>
+                        <div className={`space-y-1`}>
                           <h4 className="font-semibold text-primary font-work-sans">{info.title}</h4>
                           <p className="font-medium">{info.details}</p>
                           <p className="text-sm text-muted-foreground font-open-sans">{info.description}</p>
@@ -173,7 +173,7 @@ export function ContactSection() {
             </div>
 
             {/* Social Links */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
@@ -193,7 +193,7 @@ export function ContactSection() {
                   </Button>
                 ))}
               </div>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
 
           {/* Contact Form */}
@@ -204,7 +204,7 @@ export function ContactSection() {
           >
             <Card className="shadow-xl">
               <CardHeader>
-                <CardTitle className={`text-primary font-work-sans ${isRTL ? "text-right" : "text-left"}`}>
+                <CardTitle className={`text-primary font-work-sans`}>
                   {content.sendMessage}
                 </CardTitle>
               </CardHeader>

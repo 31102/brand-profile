@@ -3,14 +3,17 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Instagram, Linkedin } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { useRouter } from "next/navigation";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("#home");
   const { t, language } = useLanguage();
+  const router = useRouter();
 
   const navItems = [
     { name: t("nav.home"), href: "#home" },
@@ -21,13 +24,28 @@ export function Navigation() {
     { name: t("nav.contact"), href: "#contact" },
   ];
 
+  // Handle scroll for nav background
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      const scrollPos = window.scrollY + 120; // offset for nav height
+      navItems.forEach((item) => {
+        const section = document.querySelector(item.href);
+        if (section instanceof HTMLElement) {
+          const top = section.offsetTop;
+          const bottom = top + section.clientHeight;
+          if (scrollPos >= top && scrollPos < bottom) {
+            setActiveSection(item.href);
+          }
+        }
+      });
     };
+
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // initial check
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [navItems]);
 
   return (
     <motion.nav
@@ -39,17 +57,21 @@ export function Navigation() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-2 md:px-8">
         <div className="flex justify-between items-center h-16">
+          {/* Logo */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="flex items-center"
           >
             <span
-              className={`text-xl font-bold font-serif ${
+              className={`text-xl font-bold font-serif cursor-pointer ${
                 language === "ar" ? "font-arabic" : ""
               } ${scrolled ? "text-primary" : "text-white"}`}
+              onClick={() => {
+                router.push("/#home");
+              }}
             >
               {language === "ar"
                 ? "اللواء حامد العيافي"
@@ -66,18 +88,40 @@ export function Navigation() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className={`text-foreground hover:text-primary transition-colors duration-200 font-medium ${
+                className={`transition-colors duration-200 font-medium ${
                   language === "ar" ? "font-arabic" : ""
-                } ${scrolled ? "text-primary" : "text-white hover:text-purple-50"}`}
+                } ${
+                  activeSection === item.href
+                    ? "text-primary underline"
+                    : scrolled
+                    ? "text-primary"
+                    : "text-white hover:text-purple-50"
+                }`}
               >
                 {item.name}
               </motion.a>
             ))}
             <LanguageSwitcher scrolled={scrolled} />
-            <Button className="bg-primary hover:bg-primary/90">
-              <Phone className="w-4 h-4 mr-2" />
-              {t("hero.contact")}
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                className={`bg-transparent ${
+                  scrolled
+                    ? "text-primary/80 hover:bg-transparent hover:text-primary"
+                    : "text-white hover:bg-transparent hover:text-white/80"
+                }`}
+              >
+                <Linkedin className="w-4 h-4" />
+              </Button>
+              <Button
+                className={`bg-transparent ${
+                  scrolled
+                    ? "text-primary/80 hover:bg-transparent hover:text-primary"
+                    : "text-white hover:bg-transparent hover:text-white/80"
+                }`}
+              >
+                <Instagram className="w-4 h-4" />
+              </Button>
+            </div>
           </div>
 
           {/* Mobile menu button */}
@@ -88,11 +132,7 @@ export function Navigation() {
               size="sm"
               onClick={() => setIsOpen(!isOpen)}
             >
-              {isOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </Button>
           </div>
         </div>
@@ -115,8 +155,12 @@ export function Navigation() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className={`block text-foreground hover:text-primary transition-colors duration-200 font-medium ${
-                    language === "ar" ? "font-arabic text-right" : ""
+                  className={`block transition-colors duration-200 font-medium ${
+                    language === "ar"
+                      ? "font-arabic text-right"
+                      : ""
+                  } ${
+                    activeSection === item.href ? "text-primary underline" : "text-foreground hover:text-primary"
                   }`}
                   onClick={() => setIsOpen(false)}
                 >

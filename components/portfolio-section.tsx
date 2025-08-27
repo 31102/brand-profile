@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { GraduationCap, Calendar, Palette, ExternalLink } from "lucide-react"
-import { useLanguage } from "@/contexts/language-context"
+import { motion } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { GraduationCap, Calendar, Palette, ExternalLink, Trophy, HeartHandshake, Briefcase } from "lucide-react";
+import { useLanguage } from "@/contexts/language-context";
 
 const partnerships = [
   {
@@ -80,9 +80,9 @@ const partnerships = [
     },
     image: "/children-engaged-in-creative-arts-learning-activit.png",
   },
-]
+];
 
-const offerings = [
+export const offerings = [
   {
     title: {
       en: "Business Advisory & Investment Facilitation",
@@ -100,6 +100,8 @@ const offerings = [
         "هيكلة الشراكات بين القطاعين العام والخاص",
       ],
     },
+    image: "/offering1.jpg",
+    icon: <Briefcase />,
   },
   {
     title: {
@@ -118,6 +120,8 @@ const offerings = [
         "دعم المنظمات غير الحكومية المركزة على العدالة الاجتماعية",
       ],
     },
+    image: "/offering4.jpg",
+    icon: <HeartHandshake />,
   },
   {
     title: {
@@ -136,6 +140,8 @@ const offerings = [
         "رعاية المهرجانات والبطولات الرياضية",
       ],
     },
+    image: "/offering3.jpg",
+    icon: <Trophy />,
   },
   {
     title: {
@@ -154,11 +160,12 @@ const offerings = [
         "دمج المسؤولية الاجتماعية والابتكار في تصميم الفعاليات",
       ],
     },
+    image: "/offering2.jpg",
+    icon: <Calendar />,
   },
-]
-
+];
 export function PortfolioSection() {
-  const { language, isRTL } = useLanguage()
+  const { language, isRTL } = useLanguage();
 
   const content = {
     en: {
@@ -167,7 +174,8 @@ export function PortfolioSection() {
       subtitle:
         "Proudly serving as sponsor, investor, and advisor to initiatives that contribute to Qatar's creative, social, and economic landscape.",
       offeringsTitle: "Key Offerings",
-      offeringsSubtitle: "Comprehensive services designed to support business growth and community development",
+      offeringsSubtitle:
+        "Comprehensive services designed to support business growth and community development",
       learnMore: "Learn More",
     },
     ar: {
@@ -179,11 +187,11 @@ export function PortfolioSection() {
       offeringsSubtitle: "خدمات شاملة مصممة لدعم نمو الأعمال وتنمية المجتمع",
       learnMore: "اعرف المزيد",
     },
-  }
+  };
 
   return (
     <section id="portfolio" className="py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-2 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -193,8 +201,12 @@ export function PortfolioSection() {
           <Badge variant="outline" className="mb-4">
             {content[language].badge}
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6 font-work-sans">{content[language].title}</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto font-open-sans">{content[language].subtitle}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6 font-work-sans">
+            {content[language].title}
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto font-open-sans">
+            {content[language].subtitle}
+          </p>
         </motion.div>
 
         {/* Strategic Partnerships */}
@@ -208,8 +220,16 @@ export function PortfolioSection() {
               transition={{ delay: index * 0.2 }}
             >
               <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                <div className={`grid lg:grid-cols-2 gap-0 ${index % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}>
-                  <div className={`relative ${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
+                <div
+                  className={`grid lg:grid-cols-2 gap-0 ${
+                    index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
+                  }`}
+                >
+                  <div
+                    className={`relative ${
+                      index % 2 === 1 ? "lg:col-start-2" : ""
+                    }`}
+                  >
                     <img
                       src={partnership.image || "/placeholder.svg"}
                       alt={partnership.name[language]}
@@ -217,14 +237,22 @@ export function PortfolioSection() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
                   </div>
-                  <div className={`p-8 flex flex-col justify-center ${index % 2 === 1 ? "lg:col-start-1" : ""}`}>
+                  <div
+                    className={`p-8 flex flex-col justify-center ${
+                      index % 2 === 1 ? "lg:col-start-1" : ""
+                    }`}
+                  >
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                         <partnership.icon className="w-6 h-6 text-primary" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-primary font-work-sans">{partnership.name[language]}</h3>
-                        <p className="text-sm text-muted-foreground">{partnership.location[language]}</p>
+                        <h3 className="text-xl font-bold text-primary font-work-sans">
+                          {partnership.name[language]}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                          {partnership.location[language]}
+                        </p>
                       </div>
                     </div>
                     <Badge variant="secondary" className="w-fit mb-4">
@@ -235,15 +263,21 @@ export function PortfolioSection() {
                     </p>
                     <div className="flex flex-wrap gap-2 mb-6">
                       {partnership.focus[language].map((focus) => (
-                        <Badge key={focus} variant="outline" className="text-xs">
+                        <Badge
+                          key={focus}
+                          variant="outline"
+                          className="text-xs"
+                        >
                           {focus}
                         </Badge>
                       ))}
                     </div>
-                    <Button variant="outline" className="w-fit bg-transparent">
+                    {/* <Button variant="outline" className="w-fit bg-transparent">
                       {content[language].learnMore}
-                      <ExternalLink className={`${isRTL ? "mr-2" : "ml-2"} w-4 h-4`} />
-                    </Button>
+                      <ExternalLink
+                        className={`${isRTL ? "mr-2" : "ml-2"} w-4 h-4`}
+                      />
+                    </Button> */}
                   </div>
                 </div>
               </Card>
@@ -259,39 +293,51 @@ export function PortfolioSection() {
           className={`space-y-8 ${isRTL ? "rtl" : "ltr"}`}
         >
           <div className="text-center">
-            <h3 className="text-2xl font-bold text-primary mb-4 font-work-sans">{content[language].offeringsTitle}</h3>
-            <p className="text-muted-foreground font-open-sans">{content[language].offeringsSubtitle}</p>
+            <h3 className="text-3xl md:text-4xl font-bold text-primary mb-4 font-work-sans">
+              {content[language].offeringsTitle}
+            </h3>
+            <p className="text-lg text-muted-foreground font-open-sans">
+              {content[language].offeringsSubtitle}
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {offerings.map((offering, index) => (
-              <motion.div
-                key={offering.title.en}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Card className="h-full hover:shadow-lg transition-shadow duration-300">
-                  <CardHeader>
-                    <CardTitle className="text-primary font-work-sans">{offering.title[language]}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-3">
-                      {offering.items[language].map((item, itemIndex) => (
-                        <li key={itemIndex} className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-secondary rounded-full mt-2 flex-shrink-0" />
-                          <span className="text-muted-foreground font-open-sans">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+  {offerings.map((offering, index) => (
+    <motion.div
+      key={offering.title.en}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false }}
+      transition={{ delay: index * 0.1 }}
+    >
+      <Card className="h-full hover:shadow-lg transition-shadow duration-300 pt-0">
+        <img src={offering.image} alt={offering.title[language]} className="w-full h-70 object-cover rounded-md" />
+        <CardHeader className="flex items-center gap-4">
+          <div className="size-10 flex items-center justify-center bg-primary/10 rounded-xl">
+            {offering.icon}
           </div>
+          <CardTitle className="text-primary font-work-sans">
+            {offering.title[language]}
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="space-y-3">
+            {offering.items[language].map((item, itemIndex) => (
+              <li key={itemIndex} className="flex items-start gap-3 ml-3">
+                <div className="w-2 h-2 bg-secondary rounded-full mt-2 flex-shrink-0" />
+                <span className="text-muted-foreground font-open-sans">
+                  {item}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
+    </motion.div>
+  ))}
+</div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

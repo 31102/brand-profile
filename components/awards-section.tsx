@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Shield, TrendingUp, Users, Palette } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
+import { Users2, Briefcase, Leaf } from "lucide-react";
 
 const awards = [
   {
@@ -109,53 +110,48 @@ const awards = [
   },
 ];
 
-const visionPillars = [
+export const visionPillars = [
   {
-    title: {
-      en: "Human Development",
-      ar: "التنمية البشرية",
-    },
+    title: { en: "Human Development", ar: "التنمية البشرية" },
     description: {
       en: "Investing in people through education, youth empowerment, and health initiatives.",
       ar: "الاستثمار في الناس من خلال التعليم وتمكين الشباب ومبادرات الصحة.",
     },
     color: "bg-chart-1",
+    image: "/support2.png",
+    icon: <Users />,
   },
   {
-    title: {
-      en: "Social Development",
-      ar: "التنمية الاجتماعية",
-    },
+    title: { en: "Social Development", ar: "التنمية الاجتماعية" },
     description: {
       en: "Building a just, inclusive society rooted in values and mutual respect.",
       ar: "بناء مجتمع عادل وشامل متجذر في القيم والاحترام المتبادل.",
     },
     color: "bg-chart-2",
+    image: "/support3.png",
+    icon: <Users2 />,
   },
   {
-    title: {
-      en: "Economic Development",
-      ar: "التنمية الاقتصادية",
-    },
+    title: { en: "Economic Development", ar: "التنمية الاقتصادية" },
     description: {
       en: "Strengthening the private sector, diversifying the economy, and supporting entrepreneurial innovation.",
       ar: "تقوية القطاع الخاص وتنويع الاقتصاد ودعم الابتكار الريادي.",
     },
     color: "bg-chart-3",
+    image: "/support4.png",
+    icon: <Briefcase />,
   },
   {
-    title: {
-      en: "Environmental Development",
-      ar: "التنمية البيئية",
-    },
+    title: { en: "Environmental Development", ar: "التنمية البيئية" },
     description: {
       en: "Encouraging sustainable practices across business operations and community programs.",
       ar: "تشجيع الممارسات المستدامة عبر العمليات التجارية والبرامج المجتمعية.",
     },
     color: "bg-chart-4",
+    image: "/support1.png",
+    icon: <Leaf />,
   },
 ];
-
 export function AwardsSection() {
   const { language, isRTL } = useLanguage();
 
@@ -182,7 +178,7 @@ export function AwardsSection() {
 
   return (
     <section id="awards" className="py-20 bg-muted/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-2 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -261,7 +257,7 @@ export function AwardsSection() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
             {visionPillars.map((pillar, index) => (
               <motion.div
                 key={pillar.title.en}
@@ -270,15 +266,25 @@ export function AwardsSection() {
                 viewport={{ once: false }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="h-full hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-6 space-y-4">
-                    <div
-                      className={`w-full h-2 ${pillar.color} rounded-full`}
-                    />
-                    <h4 className="font-semibold text-primary font-work-sans">
-                      {pillar.title[language]}
-                    </h4>
-                    <p className="text-sm text-muted-foreground font-open-sans leading-relaxed">
+                <Card className="h-full hover:shadow-lg transition-shadow duration-300 pt-0">
+                  <img
+                    src={pillar.image}
+                    alt={pillar.title[language]}
+                    className="w-full h-48 object-cover rounded-md"
+                  />
+                  <CardContent className="p-2 md:p-4 py-0 md:py-0 space-y-4">
+                    <div className="flex items-center gap-2">
+                      <div
+                        className={`size-10 flex items-center justify-center rounded-xl ${pillar.color}/20`}
+                      >
+                        {pillar.icon}
+                      </div>
+                      <h4 className="font-semibold text-primary font-work-sans">
+                        {pillar.title[language]}
+                      </h4>
+                    </div>
+
+                    <p className="text-sm text-muted-foreground font-open-sans leading-relaxed mt-2 md:ml-12">
                       {pillar.description[language]}
                     </p>
                   </CardContent>

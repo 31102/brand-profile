@@ -67,8 +67,8 @@ export function TimelineInfographic() {
   const timeline = timelineData[language]
 
   return (
-    <section className="py-16 bg-muted/30">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 bg-muted/30" id="timeline">
+      <div className="max-w-6xl mx-auto px-2 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -85,27 +85,24 @@ export function TimelineInfographic() {
 
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary via-secondary to-primary rounded-full"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary via-secondary to-primary rounded-full hidden md:block"></div>
 
           <div className="space-y-12">
             {timeline.map((item, index) => (
               <motion.div
                 key={item.year}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+                initial={{ opacity: 0, x: 0 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false }}
                 transition={{ delay: index * 0.2 }}
-                className={`flex items-center ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"} ${isRTL && index % 2 === 0 ? "flex-row-reverse" : isRTL && index % 2 !== 0 ? "flex-row" : ""}`}
+                className={`flex flex-col md:flex-row items-center ${
+                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                } ${isRTL ? "md:flex-row-reverse" : ""}`}
               >
-                <div className="flex-1 px-8">
+                <div className="flex-1 px-2 md:px-8 mb-4 md:mb-0">
                   <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <CardContent className="p-6">
                       <div className="space-y-4">
-                        <div className="flex items-center gap-3">
-                          <Badge variant="secondary" className="font-work-sans">
-                            {item.year}
-                          </Badge>
-                        </div>
                         <h3 className="text-xl font-bold text-primary font-work-sans">{item.title}</h3>
                         <p className="text-muted-foreground font-open-sans leading-relaxed">{item.description}</p>
                         <div className="space-y-2">
@@ -122,17 +119,17 @@ export function TimelineInfographic() {
                 </div>
 
                 {/* Timeline Node */}
-                <div className="relative z-10">
+                <div className="relative z-10 mb-4 md:mb-0">
                   <motion.div
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: false }}
                     transition={{ delay: index * 0.2 + 0.3, type: "spring", stiffness: 200 }}
-                    className="w-6 h-6 bg-gradient-to-br from-primary to-secondary rounded-full border-4 border-background shadow-lg"
+                    className="w-6 h-6 bg-gradient-to-br from-primary to-secondary rounded-full border-4 border-background shadow-lg mx-auto md:mx-0"
                   ></motion.div>
                 </div>
 
-                <div className="flex-1"></div>
+                <div className="flex-1 hidden md:block"></div>
               </motion.div>
             ))}
           </div>
