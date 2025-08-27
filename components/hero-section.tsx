@@ -167,7 +167,7 @@ export function HeroSection() {
             <div className="relative">
               <img
                 src="/Major General Hamed Mohammed.jpeg"
-                alt="General Hamed Al Ayafei Portrait"
+                alt="Hamed Al Ayafei Portrait"
                 className="w-full h-[500px] max-w-md mx-auto rounded-lg shadow-2xl object-cover object-top"
               />
               <div

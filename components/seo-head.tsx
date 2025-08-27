@@ -5,12 +5,12 @@ import { useLanguage } from "@/contexts/language-context"
 
 const seoData = {
   en: {
-    title: "General Hamed Al Ayafei - Strategic Leadership & Business Excellence in Qatar",
+    title: "Hamed Al Ayafei - Strategic Leadership & Business Excellence in Qatar",
     description:
       "Former Major General turned entrepreneur, investor, and strategic advisor. Bridging local opportunities with international ambition across sports, education, CSR, and business development in Qatar.",
     keywords:
       "Qatar business leader, military leadership, strategic advisor, investment facilitation, CSR excellence, sports management, Qatar Vision 2030, business development, entrepreneurship",
-    author: "General Hamed Al Ayafei",
+    author: "Hamed Al Ayafei",
   },
   ar: {
     title: "اللواء حامد العياضي - القيادة الاستراتيجية والتميز التجاري في قطر",
@@ -61,7 +61,7 @@ export function SEOHead() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Person",
-            name: language === "ar" ? "اللواء حامد العياضي" : "General Hamed Al Ayafei",
+            name: language === "ar" ? "اللواء حامد العياضي" : "Hamed Al Ayafei",
             jobTitle: language === "ar" ? "مستشار استراتيجي ومستثمر" : "Strategic Advisor & Investor",
             description: seo.description,
             url: "https://generalhamed.com",

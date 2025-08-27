@@ -74,8 +74,8 @@ export function Navigation() {
               }}
             >
               {language === "ar"
-                ? "اللواء حامد العيافي"
-                : "General Hamed Al Ayafei"}
+                ? "حامد العيافي"
+                : "Hamed Al Ayafei"}
             </span>
           </motion.div>
 

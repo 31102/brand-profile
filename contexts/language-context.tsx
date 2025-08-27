@@ -119,7 +119,7 @@ const translations = {
     "footer.links.contact": "Contact",
     "footer.links.privacy": "Privacy Policy",
     "footer.links.terms": "Terms of Service",
-    "footer.copyright": "© 2024 General Hamed Al Ayafei. All rights reserved.",
+    "footer.copyright": "© 2024 Hamed Al Ayafei. All rights reserved.",
 
     // Newsletter
     "newsletter.title": "Stay Updated",
@@ -229,7 +229,7 @@ const translations = {
     "footer.links.contact": "التواصل",
     "footer.links.privacy": "سياسة الخصوصية",
     "footer.links.terms": "شروط الخدمة",
-    "footer.copyright": "© 2024 اللواء حامد العيافي. جميع الحقوق محفوظة.",
+    "footer.copyright": "© 2024 حامد العيافي. جميع الحقوق محفوظة.",
 
     // Newsletter
     "newsletter.title": "ابق على اطلاع",

@@ -8,12 +8,12 @@ import { MapPin, Phone, Mail, Linkedin, Instagram, ArrowUp } from "lucide-react"
 
 const footerData = {
   en: {
-    name: "General Hamed Al Ayafei",
+    name: "Hamed Al Ayafei",
     description:
       "Strategic leadership meets innovation. Bridging local opportunities with international ambition through three decades of experience in military service and business excellence.",
     quickLinks: "Quick Links",
     services: "Services",
-    copyright: "© 2024 General Hamed Al Ayafei. All rights reserved.",
+    copyright: "© 2024 Hamed Al Ayafei. All rights reserved.",
     links: [
       { name: "About", href: "#about" },
       { name: "Portfolio", href: "#portfolio" },

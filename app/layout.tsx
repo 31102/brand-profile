@@ -29,12 +29,12 @@ const inter = Inter({
 })
 
 export const metadata = {
-  title: "General Hamed Al Ayafei - Strategic Leadership & Investment | اللواء حامد العيافي",
+  title: "Hamed Al Ayafei - Strategic Leadership & Investment | حامد العيافي",
   description:
     "Former Major General in Qatar Armed Forces, now entrepreneur, advisor, and investor. Bridging local opportunities with international ambition. | لواء سابق في القوات المسلحة القطرية، الآن رجل أعمال ومستشار ومستثمر",
   keywords: "Qatar, Leadership, Investment, Military, Entrepreneur, Business Advisory, CSR, Sports Management",
   openGraph: {
-    title: "General Hamed Al Ayafei - Strategic Leadership & Investment",
+    title: "Hamed Al Ayafei - Strategic Leadership & Investment",
     description: "Former Major General in Qatar Armed Forces, now entrepreneur, advisor, and investor.",
     type: "website",
     locale: "en_US",
@@ -56,7 +56,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
-        <meta name="author" content="General Hamed Al Ayafei" />
+        <meta name="author" content="Hamed Al Ayafei" />
         <link rel="canonical" href="https://generalhamed.com" />
         <link rel="alternate" hrefLang="ar" href="https://generalhamed.com/ar" />
         <link rel="alternate" hrefLang="en" href="https://generalhamed.com/en" />
