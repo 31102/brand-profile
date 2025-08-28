@@ -242,7 +242,7 @@ export function AwardsSection() {
         </div>
 
         {/* Qatar Vision 2030 Alignment */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
@@ -292,7 +292,7 @@ export function AwardsSection() {
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

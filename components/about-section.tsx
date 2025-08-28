@@ -147,7 +147,7 @@ export function AboutSection() {
             <img
               src="/main.png"
               alt="General Hamed in Business Setting"
-              className="w-full rounded-lg shadow-lg"
+              className="w-full h-[500px] object-cover object-top rounded-lg shadow-lg"
             />
             <div
               className={`absolute -bottom-6 ${isRTL ? "-right-6" : "-left-6"} bg-primary text-primary-foreground p-6 rounded-lg shadow-lg`}

@@ -8,16 +8,15 @@ import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { useLanguage } from "@/contexts/language-context"
 import { MapPin, Phone, Mail, Linkedin, Instagram, Send } from "lucide-react"
-
 const contactData = {
   en: {
     badge: "Let's Connect",
-    title: "Ready to Build Something Great Together?",
+    title: "Leading with Vision and Impact",
     subtitle:
-      "Open to new partnerships, investment opportunities, strategic collaborations, and conversations that shape Qatar's business and social future.",
-    getInTouch: "Get in Touch",
+      "Open to meaningful partnerships, strategic collaborations, and initiatives that shape Qatar’s business landscape.",
+    getInTouch: "Contact Details",
     description:
-      "Whether you're looking for strategic guidance, investment opportunities, or partnership discussions, I'm here to help bridge your vision with Qatar's dynamic business landscape.",
+      "Whether it's exploring opportunities, driving projects, or sharing insights, I bring clarity, focus, and results to every collaboration.",
     followConnect: "Follow & Connect",
     sendMessage: "Send a Message",
     responseTime: "I typically respond within 24-48 hours. For urgent matters, please call directly.",
@@ -32,13 +31,13 @@ const contactData = {
         icon: Phone,
         title: "Phone",
         details: "+974 XXXX XXXX",
-        description: "Available for strategic consultations and partnership discussions",
+        description: "Available for strategic discussions and collaboration opportunities",
       },
       {
         icon: Mail,
         title: "Email",
         details: "hamed@example.com",
-        description: "For speaking engagements, partnerships, and media inquiries",
+        description: "For professional inquiries, partnerships, or speaking engagements",
       },
     ],
     formFields: {
@@ -53,18 +52,18 @@ const contactData = {
       emailPlaceholder: "your.email@example.com",
       companyPlaceholder: "Your company or organization",
       subjectPlaceholder: "What would you like to discuss?",
-      messagePlaceholder: "Tell me more about your project, partnership opportunity, or how I can help...",
+      messagePlaceholder: "Share the details of your project, opportunity, or how we can collaborate...",
       sendButton: "Send Message",
     },
   },
   ar: {
     badge: "لنتواصل",
-    title: "مستعد لبناء شيء عظيم معاً؟",
+    title: "الريادة برؤية وفعالية",
     subtitle:
-      "مفتوح للشراكات الجديدة وفرص الاستثمار والتعاونات الاستراتيجية والمحادثات التي تشكل مستقبل قطر التجاري والاجتماعي.",
-    getInTouch: "تواصل معي",
+      "مفتوح للشراكات المهمة، التعاونات الاستراتيجية، والمبادرات التي تشكل مشهد الأعمال في قطر.",
+    getInTouch: "تفاصيل الاتصال",
     description:
-      "سواء كنت تبحث عن التوجيه الاستراتيجي أو فرص الاستثمار أو مناقشات الشراكة، أنا هنا لمساعدتك في ربط رؤيتك بالمشهد التجاري الديناميكي في قطر.",
+      "سواء كان الهدف استكشاف فرص، قيادة مشاريع، أو مشاركة رؤى، أقدم الوضوح والتركيز والنتائج في كل تعاون.",
     followConnect: "تابع وتواصل",
     sendMessage: "إرسال رسالة",
     responseTime: "عادة ما أرد خلال 24-48 ساعة. للأمور العاجلة، يرجى الاتصال مباشرة.",
@@ -79,13 +78,13 @@ const contactData = {
         icon: Phone,
         title: "الهاتف",
         details: "+974 XXXX XXXX",
-        description: "متاح للاستشارات الاستراتيجية ومناقشات الشراكة",
+        description: "متاح للمناقشات الاستراتيجية وفرص التعاون",
       },
       {
         icon: Mail,
         title: "البريد الإلكتروني",
         details: "hamed@example.com",
-        description: "للمشاركات الخطابية والشراكات والاستفسارات الإعلامية",
+        description: "للاستفسارات المهنية، الشراكات، أو المشاركات الخطابية",
       },
     ],
     formFields: {
@@ -100,11 +99,12 @@ const contactData = {
       emailPlaceholder: "your.email@example.com",
       companyPlaceholder: "شركتك أو مؤسستك",
       subjectPlaceholder: "ما الذي تود مناقشته؟",
-      messagePlaceholder: "أخبرني المزيد عن مشروعك أو فرصة الشراكة أو كيف يمكنني المساعدة...",
+      messagePlaceholder: "شارك تفاصيل مشروعك أو فرصة التعاون أو كيف يمكننا التعاون...",
       sendButton: "إرسال الرسالة",
     },
   },
-}
+};
+
 
 const socialLinks = [
   { icon: Linkedin, name: "LinkedIn", href: "#", color: "hover:text-blue-600" },
@@ -141,7 +141,7 @@ export function ContactSection() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-primary mb-6 font-work-sans">{content.getInTouch}</h3>
+              {/* <h3 className="text-2xl font-bold text-primary mb-6 font-work-sans">{content.getInTouch}</h3> */}
               <p className="text-muted-foreground font-open-sans mb-8">{content.description}</p>
             </div>
 
@@ -268,9 +268,9 @@ export function ContactSection() {
                   {content.formFields.sendButton}
                 </Button>
 
-                <p className={`text-xs text-muted-foreground font-open-sans ${isRTL ? "text-right" : "text-center"}`}>
+                {/* <p className={`text-xs text-muted-foreground font-open-sans ${isRTL ? "text-right" : "text-center"}`}>
                   {content.responseTime}
-                </p>
+                </p> */}
               </CardContent>
             </Card>
           </motion.div>

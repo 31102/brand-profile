@@ -17,6 +17,45 @@ import { useLanguage } from "@/contexts/language-context";
 
 const partnerships = [
   {
+    icon: "/dynasty.jpeg",
+    name: {
+      en: "Dynasty Group",
+      ar: "مجموعة داينستي",
+    },
+    location: {
+      en: "Doha, Qatar",
+      ar: "الدوحة، قطر",
+    },
+    role: {
+      en: "Business Facilitator & Strategic Investor",
+      ar: "مُيسّر أعمال ومستثمر استراتيجي",
+    },
+    description: {
+      en: "Established in 1993, Dynasty Group is a Qatar-based enterprise providing strategic support, consultancy, and investments across sports, education, wellness, hospitality, and business services. With strong connections to government ministries and regulatory bodies, Dynasty is committed to building sustainable growth and aligning with Qatar National Vision 2030.",
+      ar: "مجموعة داينستي القابضة عام 1993 في قطر، وهي مؤسسة تقدم الدعم الاستراتيجي والاستشارات والاستثمارات في مجالات الرياضة والتعليم والصحة والضيافة وخدمات الأعمال. وبفضل علاقاتها الوثيقة مع الوزارات والهيئات التنظيمية، تلتزم داينستي بتحقيق نمو مستدام يتماشى مع رؤية قطر الوطنية 2030.",
+    },
+    focus: {
+      en: [
+        "Sports",
+        "Education",
+        "Wellness",
+        "Hospitality",
+        "Business Services",
+        "Sustainability",
+      ],
+      ar: [
+        "الرياضة",
+        "التعليم",
+        "الصحة",
+        "الضيافة",
+        "خدمات الأعمال",
+        "الاستدامة",
+      ],
+    },
+    image: "/dynasty-cover.png",
+    link: "https://www.dynasty.qa",
+  },
+  {
     icon: "/idai.png",
     name: {
       en: "IAID Academy",
@@ -39,7 +78,7 @@ const partnerships = [
       ar: ["التعليم الفني", "تنمية الشباب", "التبادل الثقافي"],
     },
     image: "/modern-performing-arts-academy-with-students-in-qa.png",
-    link: "https://www.iaidonline.org/",
+    link: "https://www.dynasty.qa/",
   },
   {
     icon: "/event.jpg",
@@ -188,6 +227,7 @@ export function PortfolioSection() {
       offeringsSubtitle:
         "Comprehensive services designed to support business growth and community development",
       learnMore: "Learn More",
+      visitWebsite: "Visit Website",
     },
     ar: {
       badge: "الشراكات الاستراتيجية",
@@ -197,6 +237,7 @@ export function PortfolioSection() {
       offeringsTitle: "العروض الرئيسية",
       offeringsSubtitle: "خدمات شاملة مصممة لدعم نمو الأعمال وتنمية المجتمع",
       learnMore: "اعرف المزيد",
+      visitWebsite: "زيارة الموقع",
     },
   };
 
@@ -297,7 +338,7 @@ export function PortfolioSection() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {content[language].learnMore}
+                        {content[language].visitWebsite}
                         <ExternalLink
                           className={`${isRTL ? "mr-2" : "ml-2"} w-4 h-4`}
                         />
@@ -311,7 +352,7 @@ export function PortfolioSection() {
         </div>
 
         {/* Key Offerings */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
@@ -368,7 +409,7 @@ export function PortfolioSection() {
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );
